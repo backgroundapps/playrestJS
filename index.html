@@ -46,9 +46,8 @@
 		  $(document).ready(function(){
            var pokemonNumber = getOne(1,802);
            //var backImg = ""
-           //var frontImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonNumber + ".png";
-
-           //$('#pokeImg').attr('src', frontImg);
+           var frontImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonNumber + ".png";
+           $('#pokeImg').attr('src', frontImg);
 
 
             $.ajax(
@@ -63,7 +62,7 @@
                     	$("#name").text(data.name);
 
                     	$("#ability").text(data.abilities[0].ability.name);
-           						$('#pokeImg').attr('src', data.sprites.front_default);
+           		//$('#pokeImg').attr('src', data.sprites.front_default);
 
                     	/*
                         $.each(data, function (i, theItem) {
