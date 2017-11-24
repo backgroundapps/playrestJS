@@ -3,4 +3,4 @@
 
 Rest sample using JS
 
-https://backgroundapps.github.io/playrestJS/
+[Demo](https://backgroundapps.github.io/playrestJS/)
