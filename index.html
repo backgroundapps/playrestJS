@@ -1,0 +1,128 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>PlayRestJS</title>
+		  <!-- Compiled and minified materialize CSS -->
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		  <!-- Compiled and minified animated CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
+      
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+      <style type="text/css">
+			.center_box
+			{
+			    border: solid 1px black;
+			    position: fixed;
+			    left: 50%;
+			    top: 50%;
+			    z-index: 100;
+			    height: 500px;
+			    margin-top: -200px;
+			    border-radius: 50%;
+
+
+			    width: 500px;
+			    margin-left: -300px;
+			}      
+			</style>
+
+    </head>
+
+    <body>
+
+      <script type="text/javascript">
+      function getOne(min,max)	{
+			    var num = Math.floor(Math.random()*(max-min+1)+min);
+			    return num;
+			}
+
+		  $(document).ready(function(){
+           var pokemonNumber = getOne(1,802);
+           //var backImg = ""
+           //var frontImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonNumber + ".png";
+
+           //$('#pokeImg').attr('src', frontImg);
+
+
+            $.ajax(
+                {
+                    type: "GET",
+                    url: 'https://pokeapi.co/api/v2/pokemon/' + pokemonNumber + '/',
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+
+                    	$("#name").text(data.name);
+
+                    	$("#ability").text(data.abilities[0].ability.name);
+           						$('#pokeImg').attr('src', data.sprites.front_default);
+
+                    	/*
+                        $.each(data, function (i, theItem) {
+                            var combo = document.getElementById("combo");
+                            var option = document.createElement("option");
+                            option.text = theItem.toString();
+                            option.value = theItem.toString();
+                            try {
+                                //alert('success add combo');
+                                combo.add(option, null); // Other browsers
+                            }
+                            catch (error) {
+                                alert('error found');
+                                combo.add(option); // really old browser
+                            }
+
+                        });
+                        */
+                    },
+                    error: function (msg, url, line) {
+                        alert('error trapped in error: function(msg, url, line)');
+                        alert('msg = ' + msg + ', url = ' + url + ', line = ' + line);
+
+                    }
+                });
+
+
+
+
+
+		  });
+
+
+
+      	function run() {
+		    $('.modal').modal();
+
+      	}
+
+      </script>	
+
+	    <div class="container ">
+				<!-- Page Content goes here -->
+      <button data-target="modal1" class="center_box btn modal-trigger" onclick="run()" ><img id="pokeImg"></button>
+
+      </div>    	
+
+	    <!-- Modal Structure -->
+		  <div id="modal1" class="modal bottom-sheet">
+		    <div class="modal-content">
+		      <h4 id="name"></h4>
+		      <p id="ability"></p>
+		    </div>
+		    <div class="modal-footer">
+		      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="window.location.reload(false)"  >CLOSE</a>
+		    </div>
+		  </div>
+
+	  <!-- Compiled and minified JavaScript -->
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </body>
+  </html>
