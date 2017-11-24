@@ -18,32 +18,50 @@
       <style type="text/css">
 			.center_box
 			{
-			    border: solid 1px black;
-			    position: fixed;
-			    left: 50%;
-			    top: 50%;
-			    z-index: 100;
-			    height: 500px;
-			    margin-top: -200px;
-			    border-radius: 50%;
-
-
-			    width: 500px;
-			    margin-left: -300px;
-			}      
+			   position: absolute;
+			   top: 50%;
+			   left: 50%;
+			   width: 500px;
+			   height: 500px;
+			   margin-top: -250px; /* Half the height */
+			   margin-left: -250px; /* Half the width */
+			   border-radius: 50%;
+			}
 			</style>
 
     </head>
 
     <body>
+	    
+      
 
+     <div class="container wow fadeIn " data-wow-duration="4s">
+	<h1 id="title_name" style="text-align: center" class="wow fadeIn" data-wow-duration="4s" data-wow-delay="3s"></h1>
+	<!-- Page Content goes here -->
+        <button data-target="modal1" class="center_box btn modal-trigger" onclick="run()" ><img id="pokeImg" height="203" width="189" class="wow fadeIn" data-wow-duration="4s" data-wow-delay="2s"></button>
+      </div>    	
+
+      <!-- Modal Structure -->
+       <div id="modal1" class="modal bottom-sheet">
+	<div class="modal-content">
+	  <h4 id="name"></h4>
+	  <p id="ability"></p>
+	</div>
+        <div class="modal-footer">
+	  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="window.location.reload(false)"  >RELOAD</a>
+	</div>
+       </div>
+	    
+	    
+      <script src="wow.min.js"></script>
       <script type="text/javascript">
       function getOne(min,max)	{
-			    var num = Math.floor(Math.random()*(max-min+1)+min);
-			    return num;
-			}
+	var num = Math.floor(Math.random()*(max-min+1)+min);
+	return num;
+      }
 
-		  $(document).ready(function(){
+      $(document).ready(function(){
+	   new WOW().init();    
            var pokemonNumber = getOne(1,802);
            //var backImg = ""
            var frontImg = "https://www.serebii.net/art/th/" + pokemonNumber + ".png";
@@ -60,7 +78,7 @@
                     success: function (data) {
 
                     	$("#name").text(data.name);
-
+                    	$("#title_name").text(data.name);
                     	$("#ability").text(data.abilities[0].ability.name);
            		//$('#pokeImg').attr('src', data.sprites.front_default);
 
@@ -104,24 +122,7 @@
 
       </script>	
 
-	    <div class="container animated fadeIn ">
-				<!-- Page Content goes here -->
-      <button data-target="modal1" class="center_box btn modal-trigger" onclick="run()" ><img id="pokeImg"></button>
-
-      </div>    	
-
-	    <!-- Modal Structure -->
-		  <div id="modal1" class="modal bottom-sheet">
-		    <div class="modal-content">
-		      <h4 id="name"></h4>
-		      <p id="ability"></p>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="window.location.reload(false)"  >RELOAD</a>
-		    </div>
-		  </div>
-
-	  <!-- Compiled and minified JavaScript -->
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     </body>
   </html>
