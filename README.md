@@ -6,7 +6,8 @@ Rest sample using JS
 ---
 ### Component:  
 * [MaterializeCSS](http://materializecss.com/grid.html)
-* [PokeAPI](https://pokeapi.co/)
+* [Data from PokeAPI](https://pokeapi.co/)
+* [Images from Serebii](https://www.serebii.net/)
 * [AnimateCSS](https://daneden.github.io/animate.css/)
 ---
 
